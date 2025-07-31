@@ -104,6 +104,17 @@ builder:
 **Standard configuration for standalone deployment:**
 
 > **💡 Tip**: For more `xs-app.json` examples and patterns, refer to the [SAP UI5 Deployments GitHub Repository](https://github.com/SAP-samples/ui5-deployments/blob/main/approuter/xs-app.json).
+
+> **⚠️ Important**: Sometimes during dependency installation, a problematic dependency line gets added to `app/router/package.json`:
+> ```json
+> {
+>   "dependencies": {
+>     "@sap/approuter": "^20.0.0",
+>     "cap-ui5-standalone": "file:../.."  // ← Remove this line!
+>   }
+> }
+> ```
+> **This line must be removed** as it causes build failures by trying to include the entire project directory in the approuter module.
 ```json
 {
   "welcomeFile": "/index.html",

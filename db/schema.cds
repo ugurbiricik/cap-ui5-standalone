@@ -1,4 +1,4 @@
-namespace cap-ui5-standalone;
+namespace cap.ui5.standalone;
 
 using {
     cuid,

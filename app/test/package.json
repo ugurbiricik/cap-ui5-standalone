@@ -5,7 +5,7 @@
 	"author": "Ugur Biricik",
 	"license": "Apache-2.0",
 	"scripts": {
-		"clean": "rimraf dist coverage",
+		"clean": "node -e \"const fs = require('fs'); const path = require('path'); ['dist', 'coverage'].forEach(dir => { if (fs.existsSync(dir)) fs.rmSync(dir, { recursive: true, force: true }); });\"",
 		"build": "ui5 build preload --clean-dest --config ui5-dist.yaml",
 		"build:opt": "ui5 build self-contained --clean-dest --all",
 		"start": "ui5 serve --port 8080 -o index.html",
@@ -13,10 +13,7 @@
 		"start:dist": "npm start -- --config ui5-dist.yaml",
 		"start:dist-cdn": "npm run start-cdn -- --config ui5-dist.yaml",
 		"lint": "eslint webapp",
-		"karma": "karma start",
-		"karma-ci": "karma start karma-ci.conf.js",
-		"karma-ci-cov": "karma start karma-ci-cov.conf.js",
-		"test": "npm run lint && npm run karma-ci-cov",
+		"test": "npm run lint",
 		"wdi5": "wdio run ./webapp/test/e2e/\\wdio.conf.js"
 	},
 	"devDependencies": {
@@ -29,13 +26,11 @@
 		"eslint": "^9.9.1",
 		"eslint-plugin-jsdoc": "^50.2.2",
 		"globals": "^15.9.0",
-		"karma": "^6.4.4",
-		"karma-chrome-launcher": "^3.2.0",
-		"karma-coverage": "^2.2.1",
-		"karma-ui5": "^4.0.1",
-		"rimraf": "^6.0.1",
 		"ui5-middleware-livereload": "^3.0.3",
 		"ui5-task-zipper": "^3.4.2",
 		"wdio-ui5-service": "^2.2.1"
+	},
+	"dependencies": {
+		"cap-ui5-standalone": "file:../.."
 	}
 }
