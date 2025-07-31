@@ -1,0 +1,24 @@
+<mvc:View
+    controllerName="test.controller.Main"
+    displayBlock="true"
+    xmlns="sap.m"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns:core="sap.ui.core"
+>
+    <Page
+        class="sapUiContentPadding"
+        showHeader="false"
+        id="page"
+    >
+        <content>
+            <List items="{/Products}">
+                <items>
+                    <StandardListItem
+                        title="{NAME}"
+                        description="{PRICE}"
+                    />
+                </items>
+            </List>
+        </content>
+    </Page>
+</mvc:View>
