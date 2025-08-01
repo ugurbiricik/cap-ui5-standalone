@@ -100,7 +100,7 @@ modules:
     build-parameters:
       build-result: app/
       requires:
-        - name: capui5standalonetest
+        - name: cap-ui5-standalonetest
           artifacts:
             - test.zip
           target-path: app/
