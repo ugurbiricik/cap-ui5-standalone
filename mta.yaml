@@ -90,22 +90,6 @@ modules:
       supported-platforms:
         []
 
-  - name: cap-ui5-standalone-app-deployer
-    type: com.sap.application.content
-    path: gen
-    requires:
-      - name: cap-ui5-standalone-html5-repo-host
-        parameters:
-          content-target: true
-    build-parameters:
-      build-result: app/
-      requires:
-        - name: cap-ui5-standalonetest
-          artifacts:
-            - test.zip
-          target-path: app/
-        - name: cap-ui5-standalonetest
-
 resources:
   - name: cap-ui5-standalone-auth
     type: org.cloudfoundry.managed-service
