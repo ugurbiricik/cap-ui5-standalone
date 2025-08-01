@@ -4,19 +4,19 @@ on:
       btp-subdomain:
         type: string
         required: false
-        default: 2e7eb2c6trial
+        default: abics-sub-account-r74iggf9
       btp-subaccount-id:
         type: string
         required: false
-        default: eade3b00-2c92-4e94-b7f0-6ab3d16a0da8
+        default: ac7be90b-8a23-46e0-bfb8-337baaa5eff2
       cf-api:
         type: string
         required: false
-        default: 'https://api.cf.us10-001.hana.ondemand.com'
+        default: 'https://api.cf.eu20-001.hana.ondemand.com'
       cf-org:
         type: string
         required: false
-        default: 2e7eb2c6trial
+        default: 'ABICS GmbH_abics-sub-account-r74iggf9'
       cf-space:
         type: string
         required: true
