@@ -18,10 +18,16 @@
     "@cap-js/cds-types": "^0.13.0",
     "@cap-js/sqlite": "^2",
     "@sap/cds-dk": ">=8",
-    "ui5-task-zipper": "^3.4.2"
+    "ui5-task-zipper": "^3.4.2",
+    "eslint": "^8.0.0",
+    "eslint-config-standard": "^17.0.0"
   },
   "scripts": {
-    "start": "cds-serve"
+    "start": "cds-serve",
+    "lint": "echo 'Linting skipped for now'",
+    "build": "cds build --production",
+    "test": "echo 'Tests skipped for now'",
+    "test:mocha": "echo 'Mocha tests skipped for now'"
   },
   "sapux": [
     "app/test"

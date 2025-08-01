@@ -79,9 +79,12 @@ jobs:
         path: ${{ inputs.mtar-dir }}/${{ inputs.mtar-file }}
         key: ${{ runner.os }}-${{ github.head_ref || github.ref_name }}-${{ hashFiles('_i18n/**','app/**','db/**','srv/**','*.json','**/mta.yaml') }}
 
+    - name: Install MBT
+      run: npm install -g mbt
+
     - name: MTA build
       if: steps.cache.outputs.cache-hit != 'true'
-      run: npx mbt build -s ${{ inputs.mta-source-dir }} -t ${{ inputs.mtar-dir }} --mtar ${{ inputs.mtar-file }}
+      run: mbt build -s ${{ inputs.mta-source-dir }} -t ${{ inputs.mtar-dir }} --mtar ${{ inputs.mtar-file }}
 
     - name: CF Deploy
       id: deploy
