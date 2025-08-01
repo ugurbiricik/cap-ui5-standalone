@@ -1,4 +1,4 @@
-FROM ppiper/cf-cli:v11
+FROM ppiper/cf-cli:v12
 
 # needed for cf to find its config
 # (GH resets HOME to /github/workspace)

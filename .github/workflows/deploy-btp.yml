@@ -92,4 +92,4 @@ jobs:
       with:
         createspace: true
         mtafile: ${{ inputs.mtar-dir }}/${{ inputs.mtar-file }}
-        findurl_command: 'cf apps | grep cap-ui5-standalone | awk "{print \$6}"' 
+        findurl_command: 'cf apps' 
