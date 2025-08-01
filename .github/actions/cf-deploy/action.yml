@@ -23,16 +23,6 @@ inputs:
     description: Whether to create the given space
     required: false
     default: 'false'
-  findurl_command:
-    description: Bash command that determines the application's main URL
-    required: false
-  findurl_regex:
-    description: Regex that scans the result of 'findurl_command'
-    required: false
-    default: 'https.*'
-outputs:
-  url:
-    description: The applications's main URL (only if 'findurl_command' is set and successful)
 
 runs:
   using: docker
