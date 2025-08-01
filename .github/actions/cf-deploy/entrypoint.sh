@@ -9,7 +9,8 @@ INPUT_PASSWORD=${INPUT_PASSWORD:-$CF_PASSWORD}
 
 # Use API token for authentication
 echo "Using API token authentication..."
-cf auth --bearer-token ${INPUT_PASSWORD:-$CF_PASSWORD}
+export CF_PASSWORD=${INPUT_PASSWORD:-$CF_PASSWORD}
+cf auth ${INPUT_USERNAME:-$CF_USERNAME} ${INPUT_PASSWORD:-$CF_PASSWORD}
 
 if [ "x${INPUT_CREATESPACE}" = "xtrue" ]; then
   cf create-space ${INPUT_SPACE:-$CF_SPACE} -o ${INPUT_ORG:-$CF_ORG}
