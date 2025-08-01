@@ -1,9 +1,10 @@
-FROM ppiper/cf-cli:v11
+FROM buildpack-deps:stretch-curl
 
-# needed for cf to find its config
-# (GH resets HOME to /github/workspace)
-ENV CF_HOME=$HOME
+# https://blogs.sap.com/2021/09/01/sap-tech-bytes-btp-cli-installation/
+RUN curl -s -O --location --url "https://raw.githubusercontent.com/SAP-samples/sap-tech-bytes/2021-09-01-btp-cli/getbtpcli" && \
+    chmod +x getbtpcli && \
+    echo | ./getbtpcli && \
+    mv $HOME/bin/btp* /usr/local/bin/
 
 COPY entrypoint.sh /entrypoint.sh
-RUN chmod +x /entrypoint.sh
 ENTRYPOINT ["/entrypoint.sh"]

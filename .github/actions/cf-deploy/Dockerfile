@@ -5,5 +5,4 @@ FROM ppiper/cf-cli:v11
 ENV CF_HOME=$HOME
 
 COPY entrypoint.sh /entrypoint.sh
-RUN chmod +x /entrypoint.sh
 ENTRYPOINT ["/entrypoint.sh"]
