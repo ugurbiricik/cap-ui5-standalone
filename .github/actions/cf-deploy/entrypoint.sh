@@ -9,7 +9,7 @@ INPUT_PASSWORD=${INPUT_PASSWORD:-$CF_PASSWORD}
 
 # Use API token for authentication
 echo "Using API token authentication..."
-cf auth --client-credentials
+cf auth --bearer-token ${INPUT_PASSWORD:-$CF_PASSWORD}
 
 if [ "x${INPUT_CREATESPACE}" = "xtrue" ]; then
   cf create-space ${INPUT_SPACE:-$CF_SPACE} -o ${INPUT_ORG:-$CF_ORG}
