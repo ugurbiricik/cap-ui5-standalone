@@ -4,6 +4,5 @@ FROM ppiper/cf-cli:v11
 # (GH resets HOME to /github/workspace)
 ENV CF_HOME=$HOME
 
-COPY entrypoint.sh /entrypoint.sh
-RUN chmod +x /entrypoint.sh
+COPY --chmod=+x entrypoint.sh /entrypoint.sh
 ENTRYPOINT ["/entrypoint.sh"]

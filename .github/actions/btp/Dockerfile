@@ -6,6 +6,5 @@ RUN curl -s -O --location --url "https://raw.githubusercontent.com/SAP-samples/s
     echo | ./getbtpcli && \
     mv $HOME/bin/btp* /usr/local/bin/
 
-COPY entrypoint.sh /entrypoint.sh
-RUN chmod +x /entrypoint.sh
+COPY --chmod=+x entrypoint.sh /entrypoint.sh
 ENTRYPOINT ["/entrypoint.sh"]
