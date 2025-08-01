@@ -22,7 +22,12 @@ cf deploy ${INPUT_MTAFILE} -f
 if [ ! -z "${INPUT_FINDURL_COMMAND}" ]; then
   # echo "Find URL command: ${INPUT_FINDURL_COMMAND}, regex: ${INPUT_FINDURL_REGEX}"
   res=`${INPUT_FINDURL_COMMAND}`
-  url=`echo "${res}" | grep -o "${INPUT_FINDURL_REGEX}"`
+  if [ ! -z "${INPUT_FINDURL_REGEX}" ]; then
+    url=`echo "${res}" | grep -o "${INPUT_FINDURL_REGEX}"`
+  else
+    # Default regex for cap-ui5-standalone apps
+    url=`echo "${res}" | grep "cap-ui5-standalone" | awk '{print $6}'`
+  fi
   echo "URL: $url"
   echo "::set-output name=url::$url"
 fi
