@@ -1,0 +1,45 @@
+name: Node.js CI
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+    types: [ labeled, opened, synchronize, reopened ]
+  schedule:
+    - cron: 20 4 * * *
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        node-version: [18.x, 20.x, 22.x]
+
+    steps:
+    - uses: actions/checkout@v4
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v4
+      with:
+        node-version: ${{ matrix.node-version }}
+    - run: npm i -g @sap/cds-dk typescript tsx
+    - run: npm ci
+    - run: npx cds-typer "*"
+    - run: npm run lint
+    - run: npm run build --if-present
+    - run: npm run test
+    - run: npm run test:mocha
+
+  deployment:
+    name: Deploy
+    if: ${{ github.event_name == 'push' || contains(github.event.pull_request.labels.*.name, 'deploy') }}
+    uses: ./.github/workflows/deploy-btp.yml
+    with:
+      cf-space: staging-${{ github.head_ref || github.ref_name }}
+      role-collection: abc-admin-staging-${{ github.head_ref || github.ref_name }}
+    secrets:
+      username: ${{ secrets.CF_USERNAME }}
+      password: ${{ secrets.CF_PASSWORD }}
+      grant-users: ${{ secrets.GRANT_USERS }} 

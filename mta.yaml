@@ -20,6 +20,7 @@ modules:
       buildpack: nodejs_buildpack
     build-parameters:
       builder: npm-ci
+      ignore: ["node_modules/**"]
     provides:
       - name: srv-api # required by consumers of CAP services (e.g. approuter)
         properties:
@@ -36,6 +37,8 @@ modules:
       buildpack: nodejs_buildpack
     requires:
       - name: cap-ui5-standalone-db
+    build-parameters:
+      ignore: ["node_modules/**"]
 
   - name: cap-ui5-standalone
     type: approuter.nodejs
@@ -86,6 +89,22 @@ modules:
         - npm run build
       supported-platforms:
         []
+
+  - name: cap-ui5-standalone-app-deployer
+    type: com.sap.application.content
+    path: gen
+    requires:
+      - name: cap-ui5-standalone-html5-repo-host
+        parameters:
+          content-target: true
+    build-parameters:
+      build-result: app/
+      requires:
+        - name: capui5standalonetest
+          artifacts:
+            - test.zip
+          target-path: app/
+        - name: cap-ui5-standalonetest
 
 resources:
   - name: cap-ui5-standalone-auth
