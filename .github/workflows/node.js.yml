@@ -35,8 +35,6 @@ jobs:
     uses: ./.github/workflows/deploy-btp.yml
     with:
       cf-space: dev_space
-      role-collection: abc-admin-staging-${{ github.head_ref || github.ref_name }}
     secrets:
       username: ${{ secrets.CF_USERNAME }}
-      password: ${{ secrets.CF_PASSWORD }}
-      grant-users: ${{ secrets.GRANT_USERS }} 
+      password: ${{ secrets.CF_PASSWORD }} 

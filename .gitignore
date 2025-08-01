@@ -17,6 +17,13 @@ target/
 *_mta_build_tmp
 *.mtar
 mta_archives/
+Makefile_*.mta
+
+# Node.js
+package-lock.json
+
+# Resources (generated during deployment)
+resources/
 
 # Other
 .DS_Store

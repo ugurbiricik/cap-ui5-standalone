@@ -1,14 +1,6 @@
 on:
   workflow_call:
     inputs:
-      btp-subdomain:
-        type: string
-        required: false
-        default: abics-sub-account-r74iggf9
-      btp-subaccount-id:
-        type: string
-        required: false
-        default: ac7be90b-8a23-46e0-bfb8-337baaa5eff2
       cf-api:
         type: string
         required: false
@@ -18,9 +10,6 @@ on:
         required: false
         default: 'ABICS GmbH_abics-sub-account-r74iggf9'
       cf-space:
-        type: string
-        required: true
-      role-collection:
         type: string
         required: true
       mta-source-dir:
@@ -43,9 +32,6 @@ on:
         required: true
       password:
         required: true
-      grant-users:
-        description: List of users to assign the role role-collection to
-        required: false
 
 jobs:
   deployment:
@@ -60,7 +46,6 @@ jobs:
       CF_SPACE: ${{ inputs.cf-space }}
       CF_USERNAME: ${{ secrets.username }}
       CF_PASSWORD: ${{ secrets.password }}
-      GRANT_USERS: ${{ secrets.grant-users }}
 
     steps:
     - uses: actions/checkout@v4
